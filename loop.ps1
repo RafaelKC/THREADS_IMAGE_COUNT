@@ -1,4 +1,4 @@
-$csvPath = "output.csv"
+$csvPath = "./out/output.csv"
 
 $headers = "N_threads,MS
 $headers | Out-File -FilePath $csvPath -Encoding utf8"
@@ -8,10 +8,10 @@ for ($i = 1; $i -le 20; $i++) {
     Write-Output $rsult
 
     $data = [PSCustomObject]@{
-        MS = $N_threads
+        MS = $time
         N_threads = $i
     }
     $data | Export-Csv -Path $csvPath -Append -NoTypeInformation
     Write-Output "-------------------------------"
-    Write-Output N_threads
+    Write-Output $time
 }
