@@ -7,29 +7,25 @@ import java.util.List;
 
 
 public class Main{
-    public static final String ARQUIVO_ORIGEM = "./resources/many-flowers.jpg";
-    public static final String ARQUIVO_DESTINO = "./out/many-flowers.jpg";
+    public static final String ARQUIVO_DESTINO = "./out/output.jpg";
 
     public static void main(String[] args) throws IOException {
 
-        BufferedImage ImagemOriginal = ImageIO.read(new File(ARQUIVO_ORIGEM));
+        String arquivo_origem = args[1];
+
+        BufferedImage ImagemOriginal = ImageIO.read(new File(arquivo_origem));
         BufferedImage ImagemResultado = new BufferedImage(ImagemOriginal.getWidth(), ImagemOriginal.getHeight(), BufferedImage.TYPE_INT_RGB);
 
         int width = ImagemOriginal.getWidth();
         int height = ImagemOriginal.getHeight();
 
-//        System.out.println("Resolution: "+height+"x"+width);
-
         long startTime = System.currentTimeMillis();
         try {
             int numberOfThreads = Integer.parseInt(args[0]);
             if (numberOfThreads < 2) {
-//                System.out.println("Single thread");
                 recolorirUmaThread(ImagemOriginal, ImagemResultado);
             } else {
-//                System.out.println("Total threads: " + numberOfThreads);
                 recolorMultithreaded(ImagemOriginal, ImagemResultado, numberOfThreads);
-                //recolorFracionado(ImagemOriginal, ImagemResultado, numberOfThreads);
             }
         } catch (Exception e) {
             System.out.println("Single thread");
@@ -39,8 +35,6 @@ public class Main{
         long endTime = System.currentTimeMillis();
 
         long duration = endTime - startTime;
-
-
 
         File outputFile = new File(ARQUIVO_DESTINO);
         ImageIO.write(ImagemResultado, "jpg", outputFile);

@@ -9,7 +9,7 @@ $headers = "N_threads,MS
 $headers | Out-File -FilePath $csvPath -Encoding utf8"
 
 for ($i = 1; $i -le $totalLoops; $i++) {
-    $time = java ".\src\Main.java" $i
+    $time = java ".\src\Main.java" $i "./resources/3036x4048.jpg"
 
     $data = [PSCustomObject]@{
         MS = $time
