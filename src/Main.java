@@ -11,7 +11,7 @@ public class Main{
 
     public static void main(String[] args) throws IOException {
 
-        String arquivo_origem = args[1];
+        String arquivo_origem = "C:\\Users\\gusap\\Desktop\\thr\\THREADS_IMAGE_COUNT\\THREADS_IMAGE_COUNT\\resources\\3036x4048.jpg";
 
         BufferedImage ImagemOriginal = ImageIO.read(new File(arquivo_origem));
         BufferedImage ImagemResultado = new BufferedImage(ImagemOriginal.getWidth(), ImagemOriginal.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -114,11 +114,10 @@ public class Main{
         //aqui vamos popular os novos pixels
         //se o pixel em quest o for um tom de cinza, vamos aumentar o n vel de vermelho em 10; o de verde diminuir 80, azul dimiuir 20
         if(ehNivelDeCinza(red, green, blue)) {
-            //para n o exceder o valor m ximo (255) pegamos o min
-            newRed = Math.min(255, red + 100);
-            newGreen = Math.max(0, green - 20);
-            //para n o passar o 0 pegamos o max
-            newBlue = Math.max(0, blue - 120);
+
+            newRed = Math.max(0, red - 60);
+            newGreen = Math.max(0, green - 10);
+            newBlue = Math.min(255, blue + 30);
         } else {
             newRed = red;
             newGreen = green;
