@@ -11,7 +11,7 @@ public class Main{
 
     public static void main(String[] args) throws IOException {
 
-        String arquivo_origem = "C:\\Users\\gusap\\Desktop\\thr\\THREADS_IMAGE_COUNT\\THREADS_IMAGE_COUNT\\resources\\3036x4048.jpg";
+        String arquivo_origem = args[1];
 
         BufferedImage ImagemOriginal = ImageIO.read(new File(arquivo_origem));
         BufferedImage ImagemResultado = new BufferedImage(ImagemOriginal.getWidth(), ImagemOriginal.getHeight(), BufferedImage.TYPE_INT_RGB);
